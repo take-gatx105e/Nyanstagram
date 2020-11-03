@@ -1,0 +1,29 @@
+<div class="text-center mt-5 mb-3">
+  <h1>にゃんこ新規投稿</h1>
+</div>
+
+<div class="row mt-3">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @cat, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :catname, '名前' %>
+        <%= f.text_field :catname, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :catprofile, 'プロフィール' %>
+        <%= f.text_area :catprofile, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%#= f.label :cat_image, 'にゃんこ画像' %>
+        <%#= f.attachment_field :cat_image, class: 'form-control' %>
+      </div>
+
+      <%= f.submit '投  稿', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>

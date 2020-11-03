@@ -7,7 +7,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   
-  # has_many :cats, dependent: :destroy
+  has_many :cats, dependent: :destroy
   # has_many :relationships, dependent: :destroy
   # has_many :followings, through: :relationships, source: :follow, dependent: :destroy
   # has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy

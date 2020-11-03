@@ -1,0 +1,69 @@
+<div class="text-center m-5">
+  <h1>にゃんこページ</h1>
+</div>
+
+<section class="section">
+  <div class="row">
+    <div class="col-md-8 mb-3">
+      <div class="card">
+        <div class="card-image-top">
+          <figure class="image">
+            <%#= attachment_image_tag @cat, :cat_image, :fill, 700, 500, fallback: "no-image.png", class: "cat_image" %>
+          </figure>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title"><%= @cat.catname %></h4>
+          <table class="table">
+            <tr>
+              <th>アピール</th>
+            </tr>
+            <tr>
+              <td><%= simple_format @cat.catprofile %></td>
+            </tr>
+          </table>
+          
+          <% if @cat.user.id == current_user.id %>
+            <div class="pt-4">
+              <%= link_to edit_cat_path(@cat), class: "btn btn-primary btn-sm m-3" do %>
+                <span>
+                  <i class="fas fa-cat faa-wrench animated"></i>
+                </span>
+                編集
+              <% end %>
+              <%= link_to cat_path(@cat), method: :delete, data: { confirm: "本当ににゃんこ情報を削除してもよろしいですか?" }, class: "btn btn-danger btn-sm" do %>
+                <span>
+                  <i class="fas fa-cat faa-wrench animated-hover" aria-hidden="true"></i>
+                </span>
+                削除
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card bg-light">
+        <div class="card-body">
+          <table class="table">
+            <tr>
+              <td>By <%= @cat.user.name %></td>
+            </tr>
+            <tr>
+              <td><%= @cat.user.profile %></td>
+            </tr>
+            <tr>
+              <td>
+                <%= link_to user_path(@cat.user) do %>
+                  <span>
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                  </span>
+                  <%= @cat.user.name %> さんのページへ
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
