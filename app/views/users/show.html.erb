@@ -42,22 +42,22 @@
             <% end %>
           <% end %>
           <div>
-            <%#= render 'relationships/follow_button', user: @user %>
+            <%= render 'relationships/follow_button', user: @user %>
           </div>
         </div>
         <div id="target1" class="d-flex flex-row mb-3">
-          <%#= link_to followings_user_path(@user), class: "btn btn-primary btn-sm mr-4" do %>
+          <%= link_to followings_user_path(@user), class: "btn btn-primary btn-sm mr-4" do %>
             フォロー中
             <span class="badge badge-success">
-              <%#= @count_followings %>
+              <%= @count_followings %>
             </span>
-          <%# end %>
-          <%#= link_to followers_user_path(@user), class: "btn btn-primary btn-sm" do %>
+          <% end %>
+          <%= link_to followers_user_path(@user), class: "btn btn-primary btn-sm" do %>
             フォロワー
             <span class="badge badge-secondary">
-              <%#= @count_followers %>
+              <%= @count_followers %>
             </span>
-          <%# end %>
+          <% end %>
         </div>
         <div>
           <%#= link_to likes_user_path(@user), class: "text-danger btn btn-primary btn-sm" do %>
