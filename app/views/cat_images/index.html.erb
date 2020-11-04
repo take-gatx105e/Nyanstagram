@@ -1,0 +1,53 @@
+<% @page_title = "にゃんこの画像" %>
+<div class="text-center mt-5 mb-5">
+  <h1><%= @page_title %></h1>
+</div>
+
+<ul class="toolbar">
+  <%= link_to "にゃんこページに戻る", @cat, class: "btn btn-primary btn-sm m-3" %>
+  <%= link_to "画像の追加", [:new, @cat, :image], class: "btn btn-success btn-sm" %>
+</ul>
+
+<% if @images.present? %>
+  <table class="table">
+    <thead>
+      <tr class="text-center">
+        <th>画像</th>
+        <th>代替テキスト</th>
+        <th>番号</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @images.each_with_index do |image, index| %>
+        <tr class="text-center">
+          <td><%= index + 1 %></td>
+          <td>
+            <%= image_tag image.profile_cat_image.variant(resize: "256x>"),
+              alt: image.alt_text %>
+          </td>
+          <td class="align-middle">
+            <%= image.alt_text %>
+          </td>
+          <td class="align-middle">
+            <div class="mb-3">
+              <%= link_to "編 集", edit_cat_image_path(@cat, image), class: "btn btn-primary btn-sm" %> |
+              <%= link_to "削 除", cat_image_path(@cat, image),
+                method: :delete, data: { confirm: "本当ににゃんこ画像を削除してもよろしいですか？" }, class: "btn btn-danger btn-sm" %>
+            </div>
+            <div>
+              <%= link_to_if index > 0, "上へ",
+                move_higher_cat_image_path(@cat, image),
+                method: :patch %> |
+              <%= link_to_if index < @images.size - 1, "下へ",
+                move_lower_cat_image_path(@cat, image),
+                method: :patch %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>画像がありません。</p>
+<% end %>

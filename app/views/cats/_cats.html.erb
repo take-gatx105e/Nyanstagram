@@ -4,9 +4,13 @@
       <div class="card text-center">
         <div class="card-image-top">
           <figure class="image">
-            <%= link_to cat_path(cat) do %>
-              <%#= attachment_image_tag cat, :cat_image, :fill, 1000, 1000, fallback: "no-image.png", class: "cat_image" %>
+            <% if cat.images.order(:id)[0].present? %>
+              <%= link_to cat_path(cat) do %>
+                <%= image_tag cat.images.order(:id)[0].profile_cat_image.variant(combine_options:{gravity: :center, resize:"1000x600^", crop:"1000x600+0+0"}).processed, class: "cat_image",
+                alt: cat.images.order(:id)[0].alt_text %>
+              <% end %>
             <% end %>
+              <%#= attachment_image_tag cat, :cat_image, :fill, 1000, 1000, fallback: "no-image.png", class: "cat_image" %>
           </figure>
         </div>
         <div class="card-body">

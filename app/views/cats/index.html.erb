@@ -9,8 +9,11 @@
         <div class="card text-center">
           <div class="card-image-top">
             <figure class="image">
-              <%= link_to cat_path(cat) do %>
-                <%#= attachment_image_tag cat, :cat_image, :fill, 1000, 1000, fallback: "no-image.png", class: "cat_image" %>
+              <% if cat.images.order(:id)[0].present? %>
+                <%= link_to cat_path(cat) do %>
+                  <%= image_tag cat.images.order(:id)[0].profile_cat_image.variant(combine_options:{gravity: :center, resize:"1000x600^", crop:"1000x600+0+0"}).processed, class: "cat_image",
+                  alt: cat.images.order(:id)[0].alt_text %>
+                <% end %>
               <% end %>
             </figure>
           </div>
@@ -18,7 +21,11 @@
             <div class= "row ml-3 mb-2">
               <div class="col-2 offset-1 col-sm-2 p-0">
                 <div class="">
-                  <%#= attachment_image_tag cat.user, :profile_image, :fill, 48, 48,fallback: "no-image.png", class: "profile_image p-1" %>
+                  <% if cat.user.profile_image.attached? %>
+                    <%= link_to user_path(cat.user) do %>
+                      <%= image_tag cat.user.profile_image.variant(combine_options:{gravity: :center, resize:"1000x1000^", crop:"1000x1000+0+0"}).processed, class: "profile_image" %>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
               <div class="col-3 col-sm-4 mt-2 ml-1 p-0 h4 text-left">

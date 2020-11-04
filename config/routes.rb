@@ -14,7 +14,12 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :cats
+  resources :cats do
+    resources :images, controller: "cat_images" do
+      patch :move_higher, :move_lower, on: :member
+    end
+  end
+
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
 end

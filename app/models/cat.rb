@@ -1,5 +1,6 @@
 class Cat < ApplicationRecord
   belongs_to :user
+  has_many :images, class_name: "CatImage", dependent: :destroy
 
   validates :catname, presence: true, length: { maximum: 50 }
   validates :catprofile, presence: true

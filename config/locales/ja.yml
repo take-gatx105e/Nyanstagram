@@ -1,0 +1,35 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザ
+      cat: にゃんこ
+      cat_image: にゃんこ画像
+    attributes:
+      user:
+        name: ユーザ名
+        profile: プロフィール
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワードの確認
+        new_profile_image: プロフィール画像
+        remove_profile_image: 画像を削除
+      cat:
+        title: タイトル
+        introduction: 紹介
+        directedby: 監督
+        screenplay: 脚本
+        character: キャラクターデザイン
+        music: 音楽
+        cast: キャスト
+        productioncom: 製作会社
+        productiontime: 製作時期
+      cat_image:
+        new_profile_cat_image: 画像ファイル
+        alt_text: 代替テキスト
+        position: 位置
+    errors:
+      messages:
+        invalid_member_name: は半角英数字で入力してください。
+        wrong: が正しくありません。
+        expired_at_too_old: は掲載開始日より新しい日時にしてください。
+        invalid_image_type: にはJPEG、PNG、GIF、PNG形式の画像を指定してください。

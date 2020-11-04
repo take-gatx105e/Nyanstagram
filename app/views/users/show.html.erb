@@ -7,7 +7,9 @@
     <div class="offset-sm-1 col-sm-2 text-center">
       <div>
         <figure>
-          <%#= attachment_image_tag @user, :profile_image, :fill, 1000, 1000,fallback: "no-image.png", class: "profile_image" %>
+          <% if @user.profile_image.attached? %>
+            <%= image_tag @user.profile_image.variant(combine_options:{gravity: :center, resize:"1000x1000^", crop:"1000x1000+0+0"}).processed, class: "profile_image" %>
+          <% end %>
         </figure>
       </div>
     </div>
@@ -67,9 +69,9 @@
         </div>
       </div>
     </div>
-    <div>
-      <%= render 'cats/cats', cats: @cats %>
-    </div>
+  </div>
+  <div>
+    <%= render 'cats/cats', cats: @cats %>
   </div>
 </section>
 

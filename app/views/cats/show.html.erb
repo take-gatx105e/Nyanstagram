@@ -4,11 +4,11 @@
 
 <section class="section">
   <div class="row">
-    <div class="col-md-8 mb-3">
+    <div class="col-md-9 mb-3">
       <div class="card">
         <div class="card-image-top">
           <figure class="image">
-            <%#= attachment_image_tag @cat, :cat_image, :fill, 700, 500, fallback: "no-image.png", class: "cat_image" %>
+            <%= the_first_image(@cat) %>
           </figure>
         </div>
         <div class="card-body">
@@ -17,8 +17,14 @@
             <tr>
               <th>アピール</th>
             </tr>
+             <tr>
+              <td><%= the_first_image(@cat) %></td>
+            </tr>
             <tr>
               <td><%= simple_format @cat.catprofile %></td>
+            </tr>
+             <tr>
+              <td><%= other_images(@cat) %></td>
             </tr>
           </table>
           
@@ -29,6 +35,12 @@
                   <i class="fas fa-cat faa-wrench animated"></i>
                 </span>
                 編集
+              <% end %>
+              <%= link_to cat_images_path(@cat), class: "btn btn-success btn-sm mr-3" do %>
+                <span>
+                  <i class="fas fa-cat faa-wrench animated"></i>
+                </span>
+                画像
               <% end %>
               <%= link_to cat_path(@cat), method: :delete, data: { confirm: "本当ににゃんこ情報を削除してもよろしいですか?" }, class: "btn btn-danger btn-sm" do %>
                 <span>
@@ -41,7 +53,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 mb-3">
+    <div class="col-md-3 mb-3">
       <div class="card bg-light">
         <div class="card-body">
           <table class="table">
