@@ -52,8 +52,8 @@ class User < ApplicationRecord
     Cat.where(user_id: self.following_ids + [self.id])
   end
   
-  # has_many :favorites, dependent: :destroy
-  # has_many :likes, through: :favorites, source: :cat, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :likes, through: :favorites, source: :cat, dependent: :destroy
   
   def favorite(cat)
     self.favorites.find_or_create_by(cat_id: cat.id)

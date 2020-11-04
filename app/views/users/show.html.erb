@@ -60,12 +60,12 @@
           <% end %>
         </div>
         <div>
-          <%#= link_to likes_user_path(@user), class: "text-danger btn btn-primary btn-sm" do %>
+          <%= link_to likes_user_path(@user), class: "text-danger btn btn-primary btn-sm" do %>
             <i class="fas fa-heart fa-lg faa-pulse animated"></i>
             <span class="badge badge-secondary">
-              <%#= @count_likes %>
+              <%= @count_likes %>
             </span>
-          <%# end %>
+          <% end %>
         </div>
       </div>
     </div>

@@ -2,7 +2,6 @@
   <h1>にゃんこ一覧</h1>
 </div>
 
-<section class="section">
   <div class="row">
     <% @cats.each do |cat| %>
       <div class="col-sm-4 mb-4">
@@ -32,21 +31,21 @@
                 <%= link_to cat.user.name, user_path(cat.user) %>
               </div>
               <div class="col-3 col-sm-3 mt-2 p-0">
-                <%# if current_user.favorited?(cat) %>
-                  <%#= form_with(model: current_user.favorites.find_by(cat_id: cat.id), local: true, method: :delete) do |f| %>
+                <% if current_user.favorited?(cat) %>
+                  <%= form_with(model: current_user.favorites.find_by(cat_id: cat.id), local: true, method: :delete) do |f| %>
                     <%= hidden_field_tag :cat_id, cat.id %>
                     <%= button_tag type: 'submit', class: 'text-danger btn btn-link p-0' do %>
                       <i class="fas fa-heart fa-lg faa-pulse animated"></i>
                     <% end %>
-                  <%# end %>
-                <%# else %>
-                  <%#= form_with(model: current_user.favorites.build, local: true) do |f| %>
+                  <% end %>
+                <% else %>
+                  <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
                     <%= hidden_field_tag :cat_id, cat.id %>
                     <%= button_tag type: 'submit', class: 'text-primary btn btn-link p-0' do %>
                       <i class="fas fa-heart fa-lg"></i>
                     <% end %>
-                  <%# end %>
-                <%# end %>
+                  <% end %>
+                <% end %>
               </div>
             </div>
             <div>
@@ -58,4 +57,3 @@
     <% end %>
     <%= paginate @cats %>
   </div>
-</section>
