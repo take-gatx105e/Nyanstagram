@@ -3,8 +3,7 @@ class CatsController < ApplicationController
   
   def index
     # @cats = Cat.order(id: :desc).page(params[:page]).per(6)  # 全ての猫
-    @cats = current_user.cats.order(id: :desc).page(params[:page]).per(6)  # ログインユーザの猫
-    # @cats = current_user.feed_cats.order(id: :desc).page(params[:page]).per(6)  # ログインユーザの猫
+    @cats = current_user.feed_cats.order(id: :desc).page(params[:page]).per(6)  # ログインユーザの猫
   end
 
   def show
